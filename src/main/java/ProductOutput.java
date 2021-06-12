@@ -1,18 +1,16 @@
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-@JacksonXmlRootElement(localName = "product")
-public final class SupplierOutput {
+public final class ProductOutput implements Comparable<ProductOutput> {
     private String description;
     private String gtin;
     private Price price;
     @JacksonXmlProperty(localName = "orderid")
     private String orderId;
 
-    public SupplierOutput() {
+    public ProductOutput() {
     }
 
-    public SupplierOutput(String description, String gtin, Price price, String ID) {
+    public ProductOutput(String description, String gtin, Price price, String ID) {
         super();
         this.description = description;
         this.gtin = gtin;
@@ -50,5 +48,10 @@ public final class SupplierOutput {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
+    }
+
+    @Override
+    public int compareTo(ProductOutput o) {
+        return 0;
     }
 }

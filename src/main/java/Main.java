@@ -14,7 +14,6 @@ public class Main {
             // read from stdin input and output dirs
             // compile code. make it a jar.
             // do - while
-            // validation file input
             // sort supplier output list by timestamp descendant
             String patchtoinputdir = "c://desktop/in";
             String patchtooutputdir = "c://desktop/out";
@@ -27,15 +26,16 @@ public class Main {
                 for (WatchEvent<?> event : key.pollEvents()) {
                     String currentFile = event.context().toString();
                     if (isValid(currentFile)) {
-                        Map<String, List<SupplierOutput>> categorizedProducts = OrderProcessor.process(new File(currentFile));
+                        Map<String, List<ProductOutput>> categorizedProducts = OrderProcessor.process(new File(currentFile));
                         System.out.println("Processing " + event.context() + "....");
-                        for (Map.Entry<String, List<SupplierOutput>> entry : categorizedProducts.entrySet()) {
+                        for (Map.Entry<String, List<ProductOutput>> entry : categorizedProducts.entrySet()) {
                             String supplier = entry.getKey();
+                            ProductsOutput prodsOut = new ProductsOutput(entry.getValue());
 
-                            List<SupplierOutput> products = entry.getValue();
+                            //List<ProductOutput> products = entry.getValue();
                             File xmlOutput = new File(supplier + ".xml");
                             XmlMapper xmlMapper = new XmlMapper();
-                            xmlMapper.writeValue(xmlOutput, products);
+                            xmlMapper.writeValue(xmlOutput, prodsOut);
                         }
                         System.out.println(event.context() + " successfully processed!");
                     }
@@ -52,12 +52,14 @@ public class Main {
         return inputFile.matches("orders([0-9][0-9]).xml");
     }
 
+
+
 }
 
 
 //                    final Path path = Files.createTempFile(currentProduct.getSupplier() + "23", ".xml");
 //                    if (Files.exists(path)) {
-//                        SupplierOutput newObj = new SupplierOutput(currentProduct.getDescription(), currentProduct.getGtin(), currentProduct.getPrice(), currentOrder.getID());
+//                        ProductOutput newObj = new ProductOutput(currentProduct.getDescription(), currentProduct.getGtin(), currentProduct.getPrice(), currentOrder.getID());
 //                        supplierProducts.add(newObj);
 //                    } else {
 //                        File newSupplierFile = new File(currentProduct.getSupplier() + "23.xml");

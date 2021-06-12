@@ -1,6 +1,5 @@
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
 import java.util.List;
 
@@ -46,13 +45,5 @@ public final class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-
-    @Override
-    public String toString() {
-        return "Order{<" +
-                "created=" + created +
-                ", ID='" + ID + '\'' +
-                ">\n" + products +
-                "}\n";
-    }
+    
 }

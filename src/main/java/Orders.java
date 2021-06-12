@@ -18,10 +18,4 @@ public final class Orders {
         this.orders = orders;
     }
 
-    @Override
-    public String toString() {
-        return "Orders{\n" +
-                orders +
-                "\n}";
-    }
 }

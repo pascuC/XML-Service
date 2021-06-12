@@ -7,25 +7,25 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderProcessor {
-    public static Map<String, List<SupplierOutput>> process(File inputFile) throws IOException {
-        Map<String, List<SupplierOutput>> categorizedProducts = new HashMap<>();
+    public static Map<String, List<ProductOutput>> process(File inputFile) throws IOException {
+        Map<String, List<ProductOutput>> categorizedProducts = new HashMap<>();
         XmlMapper xmlMapper = new XmlMapper();
         String xml = inputStreamToString(new FileInputStream(inputFile));
         Orders orders = xmlMapper.readValue(xml, Orders.class);
-        List<SupplierOutput> supplierProducts = new ArrayList<>();
+        List<ProductOutput> supplierProducts = new ArrayList<>();
 
         // get the order ID
         String orderNumber = inputFile.getName().replace("order", "").replace(".xml", "");
         for (Order currentOrder : orders.getOrders()) {
             for (Product currentProduct : currentOrder.getProducts()) {
-                SupplierOutput newObj = new SupplierOutput(currentProduct.getDescription(), currentProduct.getGtin(), currentProduct.getPrice(), currentOrder.getID());
-                List<SupplierOutput> supplierOutputs = categorizedProducts.get(currentProduct.getSupplier() + orderNumber);
-                if (supplierOutputs == null) {
-                    List<SupplierOutput> newList = new ArrayList<>();
+                ProductOutput newObj = new ProductOutput(currentProduct.getDescription(), currentProduct.getGtin(), currentProduct.getPrice(), currentOrder.getID());
+                List<ProductOutput> productOutputs = categorizedProducts.get(currentProduct.getSupplier() + orderNumber);
+                if (productOutputs == null) {
+                    List<ProductOutput> newList = new ArrayList<>();
                     newList.add(newObj);
                     categorizedProducts.put(currentProduct.getSupplier() + orderNumber, newList);
                 } else {
-                    supplierOutputs.add(newObj);
+                    productOutputs.add(newObj);
                 }
             }
         }
