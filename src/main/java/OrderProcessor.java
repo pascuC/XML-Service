@@ -12,10 +12,9 @@ public class OrderProcessor {
         XmlMapper xmlMapper = new XmlMapper();
         String xml = inputStreamToString(new FileInputStream(inputFile));
         Orders orders = xmlMapper.readValue(xml, Orders.class);
-        List<ProductOutput> supplierProducts = new ArrayList<>();
 
-        // get the order ID
-        String orderNumber = inputFile.getName().replace("order", "").replace(".xml", "");
+        // get the order ID from inputFile
+        String orderNumber = inputFile.getName().replace("orders", "").replace(".xml", "");
         for (Order currentOrder : orders.getOrders()) {
             for (Product currentProduct : currentOrder.getProducts()) {
                 ProductOutput newObj = new ProductOutput(currentProduct.getDescription(), currentProduct.getGtin(), currentProduct.getPrice(), currentOrder.getID());
@@ -30,7 +29,6 @@ public class OrderProcessor {
             }
         }
         return categorizedProducts;
-
     }
 
     private static String inputStreamToString(InputStream is) throws IOException {

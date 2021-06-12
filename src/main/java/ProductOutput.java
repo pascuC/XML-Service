@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public final class ProductOutput implements Comparable<ProductOutput> {
+
     private String description;
     private String gtin;
     private Price price;

@@ -6,6 +6,7 @@ import java.util.List;
 
 @JacksonXmlRootElement(localName = "orders")
 public final class Orders {
+
     @JacksonXmlProperty(localName = "order")
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<Order> orders;

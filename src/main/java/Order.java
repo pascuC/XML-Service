@@ -4,6 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.List;
 
 public final class Order {
+
     @JacksonXmlProperty(isAttribute = true, localName = "created")
     private String created;
     @JacksonXmlProperty(isAttribute = true, localName = "ID")
@@ -45,5 +46,5 @@ public final class Order {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-    
+
 }

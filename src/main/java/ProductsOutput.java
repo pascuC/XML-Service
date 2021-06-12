@@ -6,6 +6,7 @@ import java.util.List;
 
 @JacksonXmlRootElement(localName = "products")
 public class ProductsOutput {
+
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "product")
     private List<ProductOutput> products;
@@ -25,4 +26,5 @@ public class ProductsOutput {
     public void setProducts(List<ProductOutput> products) {
         this.products = products;
     }
+
 }
