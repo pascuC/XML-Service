@@ -2,12 +2,15 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
-
+/***
+ * Wrapper class for deserialization order node of the xml input file
+ */
 public final class Order {
 
     @JacksonXmlProperty(isAttribute = true)
     private String created;
     @JacksonXmlProperty(isAttribute = true)
+    @JacksonXmlElementWrapper(useWrapping = false)
     private String ID;
     @JacksonXmlProperty(localName = "product")
     @JacksonXmlElementWrapper(useWrapping = false)

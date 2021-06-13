@@ -4,8 +4,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.List;
 
+/***
+ * Wrapper class for serialization root node of the xml output file
+ */
 @JacksonXmlRootElement(localName = "products")
-public class ProductsOutput {
+public final class ProductsOutput implements Comparable<ProductsOutput> {
 
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "product")
@@ -27,4 +30,8 @@ public class ProductsOutput {
         this.products = products;
     }
 
+    @Override
+    public int compareTo(ProductsOutput o) {
+        return  0;
+    }
 }

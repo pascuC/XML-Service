@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -21,12 +19,12 @@ public class Main {
             // TODO sort supplier output list by timestamp descendant and price
             // TODO format xml output if possible
             // TODO add at the beginning of the xml file utc code etc.
-            getIOWorkingDir(); // read from stdin input and output dirs
-            processCurrentDir(); // read and process all files from inputDir
+            getIOWorkingDir();
+            processCurrentDir();
 
             WatchService watchService = FileSystems.getDefault().newWatchService();
             Path path = Paths.get(inputDir);
-            path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE); // watch event only on create new file
+            path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE); // event triggers only on creating new file
             WatchKey key;
             System.out.println("\nWaiting for files...");
             while ((key = watchService.take()) != null) {
@@ -43,7 +41,9 @@ public class Main {
         }
     }
 
-    // get the input and output working directory
+    /***
+     * Get the input and output working directory from stdin
+     */
     private static void getIOWorkingDir(){
         Scanner userInput = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Please provide the input directory path:");
@@ -70,12 +70,19 @@ public class Main {
         }
     }
 
+    /***
+     * Take all the files in the working directory and process them
+     * @throws IOException
+     */
     private static void processCurrentDir() throws IOException {
-        File folder = new File(inputDir);
-        File[] listOfFiles = folder.listFiles();
+        List<File> files = Files.list(Paths.get(inputDir))
+                                .filter(Files::isRegularFile)
+                                .filter(path -> path.toString().endsWith(".xml"))
+                                .map(Path::toFile)
+                                .collect(Collectors.toList());
 
-        for (File currFile : listOfFiles) {
-            if (currFile.isFile() && isValid(currFile.getName())) {
+        for (File currFile : files) {
+            if (isValid(currFile.getName())) {
                 doProcess(currFile.getName());
             } else {
                 System.out.println("Bad input - " + currFile.getName() + " - " + getCurrentDate());
@@ -84,20 +91,26 @@ public class Main {
     }
 
     /***
-     * validate the input file using regex
+     * Checks if the input file is valid using regex
      * @param inputFile the file that will be checked
-     * @return true or false
+     * @return True or false
      */
     private static boolean isValid(String inputFile) {
         return inputFile.matches("orders([0-9][0-9]).xml");
     }
 
+    /***
+     * Process the current validated file and writes in xml file
+     * @param currentFile the file that is being processed
+     * @throws IOException
+     */
     private static void doProcess(String currentFile) throws IOException {
         System.out.println("Processing " + currentFile + "....");
         Map<String, List<ProductOutput>> categorizedProducts = OrderProcessor.process(new File(inputDir + '\\' + currentFile));
         for (Map.Entry<String, List<ProductOutput>> entry : categorizedProducts.entrySet()) {
             String supplier = entry.getKey();
             ProductsOutput prodsOut = new ProductsOutput(entry.getValue());
+            Collections.reverse(prodsOut.getProducts());
             File xmlOutput = new File(outputDir + '\\' + supplier + ".xml");
             XmlMapper xmlMapper = new XmlMapper();
             xmlMapper.writeValue(xmlOutput, prodsOut);
@@ -106,11 +119,11 @@ public class Main {
     }
 
     /***
-     * get current date
-     * @return current date
+     * Get the current system date
+     * @return Current system date
      */
     private static String getCurrentDate(){
-        Calendar calendar = Calendar.getInstance(); // Returns instance with current date and time set
+        Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return formatter.format(calendar.getTime());
     }

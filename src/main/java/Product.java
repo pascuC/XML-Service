@@ -1,3 +1,6 @@
+/***
+ * Wrapper class for deserialization product node of the xml input file
+ */
 public final class Product {
 
     private String description;

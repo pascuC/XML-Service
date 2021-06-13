@@ -4,6 +4,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import java.util.List;
 
+/***
+ * Wrapper class for deserialization root node of the xml input file
+ */
 @JacksonXmlRootElement(localName = "orders")
 public final class Orders {
 

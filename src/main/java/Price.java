@@ -1,15 +1,16 @@
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
+import java.util.Comparator;
+
 /***
- *
+ * Wrapper class for deserialization price node of the xml input file
  */
-public final class Price {
+public final class Price implements Comparable<Price> {
 
     @JacksonXmlProperty(isAttribute = true)
     private String currency;
     @JacksonXmlText
-    @JacksonXmlProperty(localName = "valueOfProduct")
     private Double value;
 
     public String getCurrency() {
@@ -20,7 +21,7 @@ public final class Price {
         this.currency = currency;
     }
 
-    public Double getValueOfProduct() {
+    public Double getValue() {
         return value;
     }
 
@@ -28,4 +29,9 @@ public final class Price {
         this.value = value;
     }
 
+    @Override
+    public int compareTo(Price o) {
+        return Comparator.comparing(Price::getValue)
+                .compare(this, o);
+    }
 }
