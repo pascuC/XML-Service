@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +17,6 @@ public class Main {
         try {
 
             // TODO compile code. make it a jar.
-            // TODO sort supplier output list by timestamp descendant and price
             // TODO format xml output if possible
             // TODO add at the beginning of the xml file utc code etc.
             getIOWorkingDir();
@@ -113,6 +113,7 @@ public class Main {
             Collections.reverse(prodsOut.getProducts());
             File xmlOutput = new File(outputDir + '\\' + supplier + ".xml");
             XmlMapper xmlMapper = new XmlMapper();
+            xmlMapper.configure( ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true ); // add the XML header
             xmlMapper.writeValue(xmlOutput, prodsOut);
         }
         System.out.println(currentFile + " successfully processed at " + getCurrentDate());

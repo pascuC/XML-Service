@@ -1,5 +1,5 @@
 JDK version: 11
-The project use Jackson library for serialization/deserialization xml files.
+The project uses Jackson library for serialization/deserialization xml files.
 For Jackson library you have to add dependencies in pom.xml file:
 
 	<dependencies>
@@ -19,16 +19,4 @@ For Jackson library you have to add dependencies in pom.xml file:
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-	
-JacksonLibrary needs default constructors, getters and setters to works fine.
 
-ProductOutput is a class that maps each project output
-ProductsOutput is a wrapper class in order to correct display in xml file
-
-special character input error
-add date
-
-.filter(File::isRegularFile)
-.filter(p -> p.endsWith(.xml))
-.map(P->path)
-.returnColletion();
