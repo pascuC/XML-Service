@@ -5,9 +5,9 @@ import java.util.List;
 
 public final class Order {
 
-    @JacksonXmlProperty(isAttribute = true, localName = "created")
+    @JacksonXmlProperty(isAttribute = true)
     private String created;
-    @JacksonXmlProperty(isAttribute = true, localName = "ID")
+    @JacksonXmlProperty(isAttribute = true)
     private String ID;
     @JacksonXmlProperty(localName = "product")
     @JacksonXmlElementWrapper(useWrapping = false)

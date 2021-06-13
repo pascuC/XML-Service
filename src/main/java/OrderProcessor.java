@@ -28,6 +28,7 @@ public class OrderProcessor {
                 }
             }
         }
+        // TODO sort supplier output list by timestamp descendant and price
         return categorizedProducts;
     }
 

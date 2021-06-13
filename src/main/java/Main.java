@@ -83,7 +83,11 @@ public class Main {
         }
     }
 
-    // validate the input file using regex - ordersXX.xml
+    /***
+     * validate the input file using regex
+     * @param inputFile the file that will be checked
+     * @return true or false
+     */
     private static boolean isValid(String inputFile) {
         return inputFile.matches("orders([0-9][0-9]).xml");
     }
@@ -101,10 +105,14 @@ public class Main {
         System.out.println(currentFile + " successfully processed at " + getCurrentDate());
     }
 
+    /***
+     * get current date
+     * @return current date
+     */
     private static String getCurrentDate(){
         Calendar calendar = Calendar.getInstance(); // Returns instance with current date and time set
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        return (formatter.format(calendar.getTime()));
+        return formatter.format(calendar.getTime());
     }
 
 }

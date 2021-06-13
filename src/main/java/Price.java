@@ -1,9 +1,12 @@
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 
+/***
+ *
+ */
 public final class Price {
 
-    @JacksonXmlProperty(isAttribute = true, localName = "currency")
+    @JacksonXmlProperty(isAttribute = true)
     private String currency;
     @JacksonXmlText
     @JacksonXmlProperty(localName = "valueOfProduct")
