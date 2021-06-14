@@ -2,6 +2,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
+
 /***
  * Wrapper class for deserialization order node of the xml input file
  */

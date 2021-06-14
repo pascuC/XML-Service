@@ -6,6 +6,7 @@ import java.util.List;
 
 /***
  * Wrapper class for serialization root node of the xml output file
+ * The class implements Comparable Interface so that it can be compared by date and price
  */
 @JacksonXmlRootElement(localName = "products")
 public final class ProductsOutput implements Comparable<ProductsOutput> {
@@ -32,6 +33,7 @@ public final class ProductsOutput implements Comparable<ProductsOutput> {
 
     @Override
     public int compareTo(ProductsOutput o) {
-        return  0;
+        return 0;
     }
+
 }

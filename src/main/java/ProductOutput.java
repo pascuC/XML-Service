@@ -68,6 +68,6 @@ public final class ProductOutput implements Comparable<ProductOutput> {
         return Comparator.comparing(ProductOutput::getOrderedAt)
                 .thenComparing(ProductOutput::getPrice)
                 .compare(this, o);
-        // return getOrderedAt().compareTo(o.getOrderedAt());
     }
+
 }

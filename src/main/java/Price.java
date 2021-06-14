@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 /***
  * Wrapper class for deserialization price node of the xml input file
+ * The class implements Comparable Interface so that it can be compared
  */
 public final class Price implements Comparable<Price> {
 
@@ -34,4 +35,5 @@ public final class Price implements Comparable<Price> {
         return Comparator.comparing(Price::getValue)
                 .compare(this, o);
     }
+
 }
