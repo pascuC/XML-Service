@@ -27,6 +27,7 @@ watching directory. Event that triggers the watcher:
 due to the creation of a new file or renaming of an existing file.
 
 When you run the project, you have to entry a valid input directory and a valid output directory(checks not to be the
-same directory for I/O).After that, it will process the valid input directory files and write the result in the output
+same directory for I/O). After that, it will process the valid input directory files and write the result in the output
 directory. Further, the application will watch over the input directory for new valid files and process them.
 The application will also log all processed files together with the corresponding date.
+The source code contains all the necessary comments.
