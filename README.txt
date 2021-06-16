@@ -31,3 +31,5 @@ same directory for I/O). After that, it will process the valid input directory f
 directory. Further, the application will watch over the input directory for new valid files and process them.
 The application will also log all processed files together with the corresponding date.
 The source code contains all the necessary comments.
+For test, I made a input directory file: '.\XML-Service\input' and an output directory file: '\XML-Service\output\'
+I added a .jar file in .\XML-Service\out\artifacts\JavaTest_jar\JavaTest.jar
