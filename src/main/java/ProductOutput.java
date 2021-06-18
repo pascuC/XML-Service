@@ -6,7 +6,7 @@ import java.util.Comparator;
 /***
  * Wrapper class for serialization product node of the xml output file
  */
-public final class ProductOutput implements Comparable<ProductOutput> {
+public class ProductOutput implements Comparable<ProductOutput> {
     @JsonIgnore
     private String orderedAt;
     private String description;

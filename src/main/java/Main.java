@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-
-            OrderProcessor.Run();
+            OrderProcessor orderProcessor = new OrderProcessor();
+            orderProcessor.Run();
 
         } catch (Exception e) {
             e.printStackTrace();

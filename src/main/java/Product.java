@@ -1,7 +1,7 @@
 /***
  * Wrapper class for deserialization product node of the xml input file
  */
-public final class Product {
+public class Product {
 
     private String description;
     private String gtin;

@@ -9,7 +9,7 @@ import java.util.List;
  * The class implements Comparable Interface so that it can be compared by date and price
  */
 @JacksonXmlRootElement(localName = "products")
-public final class ProductsOutput implements Comparable<ProductsOutput> {
+public class ProductsOutput implements Comparable<ProductsOutput> {
 
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "product")

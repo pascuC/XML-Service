@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 /***
  * Class specialized on xml serialization/deserialization
  */
-public final class OrderProcessor {
+public class OrderProcessor {
 
     private static String inputDir;
     private static String outputDir;
 
-    public static void Run() {
+    public void Run() {
 
         try {
             getIOWorkingDir();
@@ -44,7 +44,7 @@ public final class OrderProcessor {
     /***
      * Get the input and output working directory from stdin
      */
-    private static void getIOWorkingDir() {
+    private void getIOWorkingDir() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Please provide the input directory path:");
         while (true) {
@@ -75,7 +75,7 @@ public final class OrderProcessor {
      * Take all the files in the working directory and process them
      * @throws IOException
      */
-    private static void processCurrentDir() throws IOException {
+    private void processCurrentDir() throws IOException {
         List<File> files = Files.list(Paths.get(inputDir))
                 .filter(Files::isRegularFile)
                 .filter(path -> path.toString().endsWith(".xml"))
@@ -96,7 +96,7 @@ public final class OrderProcessor {
      * @param inputFile the file that will be checked
      * @return True or false
      */
-    private static boolean isValid(String inputFile) {
+    private boolean isValid(String inputFile) {
         return inputFile.matches("orders([0-9][0-9]).xml");
     }
 
@@ -136,7 +136,7 @@ public final class OrderProcessor {
      * @param currentFile the file that is being processed
      * @throws IOException
      */
-    private static void doProcess(String currentFile) throws IOException {
+    private void doProcess(String currentFile) throws IOException {
         System.out.println("Processing " + currentFile + "....");
         Map<String, List<ProductOutput>> categorizedProducts =
                 OrderProcessor.process(new File(inputDir + '\\' + currentFile));
@@ -160,8 +160,8 @@ public final class OrderProcessor {
      */
     private static String inputStreamToString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
-        String line;
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String line;
         while ((line = br.readLine()) != null) {
             sb.append(line);
         }
@@ -174,7 +174,7 @@ public final class OrderProcessor {
      * Get the current system date
      * @return Current system date
      */
-    private static String getCurrentDate() {
+    private String getCurrentDate() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         return formatter.format(calendar.getTime());

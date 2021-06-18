@@ -6,7 +6,7 @@ import java.util.List;
 /***
  * Wrapper class for deserialization order node of the xml input file
  */
-public final class Order {
+public class Order {
 
     @JacksonXmlProperty(isAttribute = true)
     private String created;

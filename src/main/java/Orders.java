@@ -8,7 +8,7 @@ import java.util.List;
  * Wrapper class for deserialization root node of the xml input file
  */
 @JacksonXmlRootElement(localName = "orders")
-public final class Orders {
+public class Orders {
 
     @JacksonXmlProperty(localName = "order")
     @JacksonXmlElementWrapper(useWrapping = false)
